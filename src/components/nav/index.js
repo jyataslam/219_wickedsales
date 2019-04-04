@@ -1,34 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Sidenav from './sidenav';
 
 class Nav extends Component {
-    render(){
+    renderLinks() {
         return (
-            <nav className="orange darken-1">
-                <div className="nav-wrapper">
-                    <Link className="brand-logo" to="/">Wicked Sales</Link>
-                    <a href="#" data-target="sidenav" className="sidenav-trigger">
-                        <i className="material-icons">menu</i>
-                    </a>
+            <Fragment>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/products">Products</Link>
+                </li>
+            </Fragment>
+        )
+    }
 
-                    <ul className="right hide-on-med-and-down">
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/products">Products</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Sign in</Link>
-                        </li>
-                        <li>
-                            <Link to="/">Sign up</Link>
-                        </li>
-                    </ul>
-                </div>
-                <Sidenav/>
-            </nav>
+    render() {
+        const links = this.renderLinks();
+
+        return (
+            <Fragment>
+                <nav className="orange darken-1">
+                    <div className="nav-wrapper">
+                        <Link className="brand-logo" to="/">Wicked Sales</Link>
+                        <a href="#" data-target="sidenav" className="sidenav-trigger">
+                            <i className="material-icons">menu</i>
+                        </a>
+
+                        <ul className="right hide-on-med-and-down">
+                            {links}
+                        </ul>
+                    </div>
+                    <Sidenav links={links}/>
+                </nav>
+            </Fragment>
         )
     }
 }
