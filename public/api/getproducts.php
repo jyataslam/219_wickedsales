@@ -1,6 +1,7 @@
 <?php
 
 //like putting script tags at top of html doc
+require_once('config.php');
 require_once('mysqlconnect.php');
 require_once('functions.php');
 
