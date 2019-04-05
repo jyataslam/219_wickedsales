@@ -9,9 +9,11 @@ import Nav from './nav';
 
 const App = () => (
     <div>
-        <Nav/>
-        <Route path="/" component={Home} exact />
-        <Route path="/products" component={ProductRoutes}/>
+        <Nav />
+        <div className="container">
+            <Route path="/" component={Home} exact />
+            <Route path="/products" component={ProductRoutes} />
+        </div>
     </div>
 );
 

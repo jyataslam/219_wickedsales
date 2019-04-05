@@ -7,7 +7,6 @@ class ProductDetails extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="product-details">
                 <h1 className="center">[Product Name] Details</h1>
