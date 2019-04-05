@@ -17,7 +17,7 @@ $result = mysqli_query($conn, $query);
 
 if (!$result){
     throw new Exception('invalid query: '. mysqli_error($conn));
-}
+};
 
 $images = [];
 $data = [];
