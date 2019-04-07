@@ -11,7 +11,6 @@ class ProductDetails extends Component {
 
         // Call server to get product details. Need a product ID
         const response = await axios.get(`/api/getproductdetails.php?productId=${params.product_id}`);
-        console.log(response);
 
         if (response.data.success){
             this.setState({
@@ -26,7 +25,6 @@ class ProductDetails extends Component {
 
     render() {
         const { details } = this.state;
-        console.log(details)
 
         if (details === null){
             return <h1>Loading...</h1>
@@ -34,12 +32,27 @@ class ProductDetails extends Component {
             return <h1 className="center">No Product Found! 😢</h1>
         }
 
-        const { name, description } = details;
+        const { name, description, images, miscDetails, price } = details;
 
+        const detailsArr = Object.keys(miscDetails).map((key) => {
+            return (
+                <ul key={key}>
+                    <li><span className="uppercase">{key}</span>: {miscDetails[key]}</li>
+                </ul>
+            )
+        });
+        
         return (
-            <div className="product-details">
+            <div className="product-details center">
                 <h1 className="center">{name}</h1>
-                <p className="center">{description}</p>
+                <img src={`/dist/${images}`} alt="shoes" className="product-image"/>
+                <ul className="center">
+                    <li className="center">${price}</li>
+                    <br/>
+                    <li className="center">{description}</li>
+                    <br/>
+                    <li className="center">{detailsArr}</li>
+                </ul>
             </div>
         )
     }
