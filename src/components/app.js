@@ -6,6 +6,7 @@ import ProductRoutes from './products';
 import { Route } from 'react-router-dom';
 import Home from './products/home';
 import Nav from './nav';
+import Test from './test';
 
 const App = () => (
     <div>
@@ -13,6 +14,7 @@ const App = () => (
         <div className="container">
             <Route path="/" component={Home} exact />
             <Route path="/products" component={ProductRoutes} />
+            <Route path="/test" component={Test} />
         </div>
     </div>
 );
