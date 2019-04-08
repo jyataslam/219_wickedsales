@@ -47,11 +47,11 @@ class ProductDetails extends Component {
                         <div className="right-align product-price">{formatMoney(price)}</div>
                         <div className="right-align add-to-cart">
                             <span className="qty-container">
-                                <button className="btn btn-floating grey">
+                                <button className="btn btn-floating grey waves-light waves-effect">
                                 <i className="material-icons">remove</i>
                                 </button>
                                 <span className="product-qty">1</span>
-                                <button className="btn btn-floating purple lighten-1">
+                                <button className="btn btn-floating lighten-1 light-blue waves-light waves-effect">
                                 <i className="material-icons">add</i>
                                 </button>
                                 
