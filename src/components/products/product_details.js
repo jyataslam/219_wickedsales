@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Carousel from './product_carousel';
 import ProductCarousel from './product_carousel';
+import { formatMoney } from '../../helpers';
+import MiscDetails from './misc_details';
 
 class ProductDetails extends Component {
     state = {
@@ -36,31 +38,30 @@ class ProductDetails extends Component {
 
         const { name, description, images, miscDetails, price } = details;
 
-        const detailsArr = Object.keys(miscDetails).map((key) => {
-            return (
-                <ul key={key}>
-                    <li><span className="uppercase">{key}</span>: {miscDetails[key]}</li>
-                </ul>
-            )
-        });
-
         return (
-            <div className="row">
-                <div className="col s12 m7">
-                    <div className="card large">
-                        <div className="card-image">
-                            <ProductCarousel images={images} />
-                            <h1 className="center">{name}</h1>
+            <div className="product-details">
+                <h1 className="center">{name}</h1>
+                <div className="row">
+                    <ProductCarousel images={images} />
+                    <div className="col s12 m4 product-info">
+                        <div className="right-align product-price">{formatMoney(price)}</div>
+                        <div className="right-align add-to-cart">
+                            <span className="qty-container">
+                                <button className="btn btn-floating grey">
+                                <i className="material-icons">remove</i>
+                                </button>
+                                <span className="product-qty">1</span>
+                                <button className="btn btn-floating purple lighten-1">
+                                <i className="material-icons">add</i>
+                                </button>
+                                
+                            </span>
+                            <button className="purple darken-2 btn">
+                                <i className="material-icons">add_shopping_cart</i>
+                            </button>
                         </div>
-                        <div className="card-content">
-                            <ul className="center">
-                                <li className="center">${price}</li>
-                                <br />
-                                <li className="center">{description}</li>
-                                <br />
-                                <li className="center">{detailsArr}</li>
-                            </ul>
-                        </div>
+                        <p>{description}</p>
+                        <MiscDetails details={miscDetails} />
                     </div>
                 </div>
             </div>

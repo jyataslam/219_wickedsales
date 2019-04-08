@@ -7,11 +7,41 @@
         }
     }
 
-    .product-image {
-        height: 200px;
+    .product-details{
+        .product-price {
+            font-size: 3.5em;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 0 0 0 30px;
+        }
+
+        .add-to-cart {
+            font-size: 1em;
+        }
+
+        .qty-container {
+            margin: 0 30px;
+            vertical-align: middle;
+
+            button {
+                margin: 0 12px;
+            }
+
+            .product-qty {
+                padding: 5px 15px;
+            }
+        }
+
+        .carousel {
+            height: 600px;
+    
+            .indicators {
+                background-color: #eee;
+            }
+        }
     }
 }
 
-.uppercase {
-    text-transform: capitalize;
-}
+    
