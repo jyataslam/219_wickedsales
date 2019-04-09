@@ -3,7 +3,6 @@
 //like putting script tags at top of html doc
 require_once('mysqlconnect.php');
 require_once('functions.php');
-
 //function in parameter must be in string
 set_exception_handler('handleError');
 require_once('config.php');
