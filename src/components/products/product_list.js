@@ -15,6 +15,11 @@ class ProductList extends Component {
         this.getProducts();
     }
 
+    goToDetails = (id) => {
+        // .push redirects you to a different page at that specific id
+        this.props.history.push(`/products/${id}`);
+    }
+
     getProducts() {
         axios.get('http://localhost:8888/api/getproducts.php').then((response) => {
 
@@ -26,7 +31,7 @@ class ProductList extends Component {
 
     render() {
         const productList = this.state.products.map((product) => {
-            return <ProductItem key={product.id} {...product}/>
+            return <ProductItem key={product.id} {...product} detailsFunction={this.goToDetails}/>
         });
 
         return (
