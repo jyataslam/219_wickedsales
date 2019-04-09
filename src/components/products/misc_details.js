@@ -2,8 +2,6 @@ import React from 'react';
 import { toWords } from '../../helpers';
 
 export default props => {
-    console.log('Misc Details props: ', props);
-
     const {details} = props;
 
     const additionalInfo = Object.keys(details).map((key) => {
