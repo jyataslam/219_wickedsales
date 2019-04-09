@@ -60,7 +60,9 @@ class ProductDetails extends Component {
                                 <i className="material-icons">add_shopping_cart</i>
                             </button>
                         </div>
+                        <div className="prod-description">
                         <p>{description}</p>
+                        </div>
                         <MiscDetails details={miscDetails} />
                     </div>
                 </div>
