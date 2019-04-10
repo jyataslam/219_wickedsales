@@ -13,21 +13,17 @@ $cart_quantity = $product_quantity = 1;
 $user_id = 1;
 
 $query = "SELECT `price` FROM `products` WHERE `id` = $product_id";
-
 $result = mysqli_query($conn, $query);
 
 if (!$result){
     throw new Exception(mysqli_error($conn));
 }
-
 if (mysqli_num_rows($result) === 0){
     throw new Exception("no product matches product id $product_id");
 }
 
 $product_data = mysqli_fetch_assoc($result);
-
 $product_price = (int)$product_data['price'];
-
 $product_total = $product_price * $product_quantity;
 
 if (empty($_SESSION['cart_id'])){
@@ -51,31 +47,26 @@ if (empty($_SESSION['cart_id'])){
     $cart_id = $_SESSION['cart_id'];
 
     $update_cart_query = "UPDATE `carts` SET `item_count` = `item_count` + $product_quantity, `total_price` = `total_price` + $product_total WHERE `id` = $cart_id";
-
     $update_result = mysqli_query($conn, $update_cart_query);
 
     if (!$update_result){
         throw new Exception('Cart data was not updated');
     }
-
     if (mysqli_affected_rows($conn) === 0) {
         throw new Exception('cart data was not updated');
     }
 
     $cart_query = "SELECT `item_count`, `total_price` FROM `carts` WHERE `id` = $cart_id";
-
     $cart_result = mysqli_query($conn, $cart_query);
 
     if (!$cart_result){
         throw new Exception('Unable to get updated cart data');
     }
-
     if (mysqli_affected_rows($conn) === 0){
         throw new Exception('No cart data found');
     }
 
-    $row = mysqli_fetch_assoc($cart_result);
-        
+    $row = mysqli_fetch_assoc($cart_result);   
     $cart_quantity = $row['item_count'];
     $product_total = $row['total_price'];
 }
