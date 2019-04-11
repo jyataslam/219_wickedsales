@@ -11,10 +11,6 @@ class ProductAdd extends Component {
         }
     }
 
-     componentDidMount(){
-
-     }
-
     incrementQty = () => {
         this.setState({
             quantity: this.state.quantity + 1
