@@ -25,6 +25,9 @@ if (empty($input['password'])){
 $email = $input['email'];
 $password = $input['password'];
 
+// sanitize by escaping all quote characters in the string
+$email = addslashes($email);
+
 $hashedPassword = sha1($password);
 
 unset($input['password']);
