@@ -8,20 +8,26 @@ $output = [
     'success' => false
 ];
 
-if (empty($_POST['email'])){
+//store json data from the axios call and store it into variable that will be later decoded for php to be able to comprehend
+$json_input = file_get_contents("php://input");
+
+// 'true' converts all assoc arrays into objects as opposed to standard classes
+$input = json_decode($json_input, true);
+
+if (empty($input['email'])){
     throw new Exception('Email is a required value');
 }
 
-if (empty($_POST['password'])){
+if (empty($input['password'])){
     throw new Exception('Password is a required value');
 }
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = $input['email'];
+$password = $input['password'];
 
 $hashedPassword = sha1($password);
 
-unset($_POST['password']);
+unset($input['password']);
 
 $query = "SELECT `id`, `name` FROM `users` WHERE `email` = '$email' 
             AND `password` = '$hashedPassword'";
