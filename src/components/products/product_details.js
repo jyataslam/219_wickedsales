@@ -29,7 +29,6 @@ class ProductDetails extends Component {
     }
 
     render() {
-        console.log('Props:', this.props);
         const { details } = this.state;
         const { match: { params }, updateCart } = this.props;
 

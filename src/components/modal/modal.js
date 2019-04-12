@@ -2,15 +2,26 @@ import React, { Component } from 'react';
 import './modal.scss';
 
 class Modal extends Component {
-    render(){
-        if (this.props.isOpen){
+    render() {
+        const { children, 
+                isOpen, 
+                defaultAction, 
+                defaultActionText = 'Okay', 
+                secondaryAction = null, 
+                secondaryActionText = 'Go to cart' } = this.props;
+        if (isOpen) {
             return (
                 <div className="ws-modal">
                     <div className="ws-modal-content">
-                        {this.props.children}
+                        {children}
                         <div className="ws-modal-actions center">
-                            <button className="btn btn-large black" onClick={this.props.close}>Okay</button>
-                        </div>
+                            <button className="btn btn-large purple" onClick={defaultAction}>{defaultActionText}</button>
+                            {
+                            secondaryAction
+                                ? <button onClick={secondaryAction} className="btn btn-large">{secondaryActionText}</button>
+                                : null
+                            }
+                        </div>  
                     </div>
                 </div>
             )
