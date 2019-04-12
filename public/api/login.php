@@ -8,7 +8,9 @@ $output = [
     'success' => false
 ];
 
-//store json data from the axios call and store it into variable that will be later decoded for php to be able to comprehend
+
+// gives you raw strings from the body of the request packet from the client
+
 $json_input = file_get_contents("php://input");
 
 // 'true' converts all assoc arrays into objects as opposed to standard classes
