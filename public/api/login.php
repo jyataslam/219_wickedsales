@@ -8,9 +8,7 @@ $output = [
     'success' => false
 ];
 
-
 // gives you raw strings from the body of the request packet from the client
-
 $json_input = file_get_contents("php://input");
 
 // 'true' converts all assoc arrays into objects as opposed to standard classes
