@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import Modal from '../modal';
 
 class ProductAdd extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            quantity: 1
+            quantity: 1,
+            totalPrice: 0,
+            cartQty: 0,
+            modalOpen: false
         }
     }
 
@@ -28,15 +32,24 @@ class ProductAdd extends Component {
     }
 
     addToCart = () => {
-        const { productId } = this.props;
+        const { productId, updateCart } = this.props;
         const { quantity } = this.state;
         axios.get(`/api/addcartitem.php?product_id=${productId}&quantity=${quantity}`).then((response) => {
-            this.props.history.push('/cart');
+            const { cartCount, cartTotal } = response.data;
+            console.log('Add Cart Item response: ', response)
+            updateCart(cartCount);
 
+            this.setState({
+                modalOpen: true,
+                cartQty: cartCount,
+                totalPrice: cartTotal
+            });
         });
     }
 
     render() {
+        const { modalOpen, totalPrice, cartQty, quantity } = this.state;
+
         return (
             <div className="right-align add-to-cart">
                 <span className="qty-container">
@@ -51,6 +64,17 @@ class ProductAdd extends Component {
                 <button onClick={this.addToCart} className="purple darken-2 btn">
                     <i className="material-icons">add_shopping_cart</i>
                 </button>
+                <Modal isOpen={modalOpen}>
+                    <h1 className="center">{quantity} Item(s) Added To Cart</h1>
+                    <div className="row">
+                        <div className="col s6">Cart Total Price</div>
+                        <div className="col s6">{totalPrice}</div>
+                    </div>
+                    <div className="row">
+                        <div className="col s6">Cart Total Items</div>
+                        <div className="col s6">{cartQty}</div>
+                    </div>
+                </Modal>
             </div>
         )
     }
