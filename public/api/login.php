@@ -26,17 +26,32 @@ $email = $input['email'];
 $password = $input['password'];
 
 // sanitize by escaping all quote characters in the string
-$email = addslashes($email);
+// $email = addslashes($email);
 
 $hashedPassword = sha1($password);
 
 unset($input['password']);
 
-$query = "SELECT `id`, `name` FROM `users` WHERE `email` = '$email' 
-            AND `password` = '$hashedPassword'";
+$query = "SELECT `id`, `name` FROM `users` WHERE `email` = ? 
+            AND `password` = ?";
+
+// send the safe query to the db
+$statement = mysqli_prepare($conn, $query);
+
+//        Params: (the og stmt, what kind of variables will be passed in, and then the variables that would be in the query where ?'s are)
+mysqli_stmt_bind_param($statement, 'ss', $email, $hashedPassword);
+
+// tell the db to mix the query and the data
+mysqli_stmt_execute($statement);
+
+//get the result pointer for the prepared query statement's data
+$result = mysqli_stmt_get_result($statement);
+
 
 // $result will be the mysqli object 
-$result = mysqli_query($conn, $query);
+//not needed anymore because of prepared statement
+// $result = mysqli_query($conn, $query);
+
 
 if (!$result){
     throw new Exception(mysqli_error($conn));
