@@ -5,7 +5,6 @@ import SignIn from './sign_in';
 
 export default props => {
     const { match } = props;
-    console.log(props)
 
     return (
         <Switch>
