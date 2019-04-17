@@ -23,6 +23,21 @@ const SignInForm = props => {
     )
 }
 
+function validate({ email, password }){
+    const errors = {};
+
+    if (!email){
+        errors.email = 'Please enter an email';
+    }
+
+    if (!password){
+        errors.password = 'Please enter a password';
+    }
+
+    return errors;
+}
+
 export default reduxForm({
-    form: 'sign-in-form'
+    form: 'sign-in-form',
+    validate: validate
 })(SignInForm);
