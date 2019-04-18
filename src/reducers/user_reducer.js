@@ -12,11 +12,11 @@ const DEFAULT_STATE = {
 
 // will be called by Redux when we are updating state
 // first param is the piece of state you want to update. If state is not given to us, set state = default_state
-// second param is an action. it MUST have a type property
+// second param is an action. it MUST have a type property. action is coming from src/actions/index.js
 function userReducer(state = DEFAULT_STATE, action){
     switch(action.type){
-        // case 'LOG_USER_IN':
-        //     return {...state, auth: true, username: action.username };
+        case 'SIGN_IN':
+            return {...state, auth: true };
         default: 
             return state;
     }
