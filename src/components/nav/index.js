@@ -35,7 +35,7 @@ class Nav extends Component {
 
     buildLink(link){
         return (
-            <li key={link.to}>
+            <li key={link.to} className="sidenav-close">
                 <Link to={link.to}>{link.text}</Link>
             </li>
         )
@@ -54,14 +54,14 @@ class Nav extends Component {
 
         return (
             <Fragment>
-                <li>
+                <li className="sidenav-close">
                     <Link to="/">Home</Link>
                 </li>
-                <li>
+                <li className="sidenav-close">
                     <Link to="/products">Products</Link>
                 </li>
                 {navLinks}
-                <li>
+                <li className="sidenav-close">
                     <CartLink items={this.props.cartItems} />
                 </li>
             </Fragment>
