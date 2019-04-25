@@ -2,7 +2,7 @@ import types from '../actions/types';
 
 const DEFAULT_STATE = {
     auth: false,
-    username: ''
+    email: ''
 };
 
 // action type example. type is always a string

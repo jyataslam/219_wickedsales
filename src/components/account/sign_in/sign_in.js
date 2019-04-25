@@ -5,7 +5,6 @@ import { signIn } from '../../../actions';
 
 class SignIn extends Component {
     handleSignIn = (values) => {
-        console.log('Form Values: ', values);
         this.props.signIn(values);
     }
 

@@ -3,7 +3,6 @@ import { reduxForm, Field } from 'redux-form';
 import Input from '../../general/input';
 
 const SignInForm = props => {
-    console.log('Sign in form props: ', props);
     const { handleSubmit, signIn } = props;
 
     return (
